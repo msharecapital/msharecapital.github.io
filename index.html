@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M SHARE CAPITAL LLC | Financial Investment Strategies</title>
+    <meta name="description" content="M SHARE CAPITAL LLC specializes in securities, commodity contracts, and strategic financial investment activities based in San Francisco.">
+    
+    <!-- Google Fonts: Inter for clean, modern corporate typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN for portability) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuration for Tailwind to match the requested design aesthetic -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        corporate: {
+                            900: '#064e3b', // Deep Emerald
+                            800: '#065f46',
+                            700: '#047857',
+                            600: '#059669',
+                            500: '#10b981', // Accent Green
+                            100: '#d1fae5', // Light background
+                            50: '#ecfdf5',
+                        },
+                        slate: {
+                            850: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(6, 78, 59, 0.85), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for smoothness and specific UI elements */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Modal Transitions */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-inactive {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Card Hover Effects */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Input styling */
+        .form-input {
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+    </style>
+</head>
+<body class="text-slate-700 bg-slate-50">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="w-10 h-10 bg-corporate-900 rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">M</span>
+                    </div>
+                    <div>
+                        <span class="block text-slate-900 font-bold text-lg tracking-tight">M SHARE CAPITAL</span>
+                        <span class="block text-xs text-corporate-600 font-medium tracking-widest uppercase">LLC</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-slate-600 hover:text-corporate-700 font-medium transition-colors">Home</a>
+                    <a href="#about" class="text-slate-600 hover:text-corporate-700 font-medium transition-colors">Our Firm</a>
+                    <a href="#services" class="text-slate-600 hover:text-corporate-700 font-medium transition-colors">Capabilities</a>
+                    <a href="#process" class="text-slate-600 hover:text-corporate-700 font-medium transition-colors">Process</a>
+                    <button onclick="toggleModal('contactModal')" class="bg-corporate-900 hover:bg-corporate-800 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Get in Touch
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-slate-600 hover:text-corporate-900 focus:outline-none mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden mobile-menu md:hidden bg-white border-t border-slate-100">
+            <a href="#home" class="block py-3 px-4 text-sm hover:bg-slate-50 text-slate-700">Home</a>
+            <a href="#about" class="block py-3 px-4 text-sm hover:bg-slate-50 text-slate-700">Our Firm</a>
+            <a href="#services" class="block py-3 px-4 text-sm hover:bg-slate-50 text-slate-700">Capabilities</a>
+            <a href="#process" class="block py-3 px-4 text-sm hover:bg-slate-50 text-slate-700">Process</a>
+            <a href="#" onclick="toggleModal('contactModal')" class="block py-3 px-4 text-sm hover:bg-slate-50 text-corporate-700 font-bold">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- 1. Main Screen / Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+        <div class="absolute inset-0 bg-black/10"></div> <!-- Additional subtle overlay -->
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+            <div class="fade-in-up">
+                <span class="inline-block py-1 px-3 rounded-full bg-corporate-500/20 border border-corporate-500/30 text-corporate-100 text-sm font-semibold tracking-wider uppercase mb-6 backdrop-blur-sm">
+                    Strategic Wealth Architecture
+                </span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+                    Optimizing Capital Through <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-corporate-400 to-emerald-200">Intelligent Allocation</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    M SHARE CAPITAL LLC navigates the complexities of global securities and commodity markets. 
+                    We provide institutional-grade investment infrastructure designed to preserve capital and accelerate growth through diversified asset strategies.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="toggleModal('contactModal')" class="bg-corporate-500 hover:bg-corporate-400 text-corporate-900 px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-corporate-500/50">
+                        Initiate Consultation
+                    </button>
+                    <a href="#services" class="bg-transparent border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-white/10 backdrop-blur-sm">
+                        Explore Strategies
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-8 fade-in-up delay-300">
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-white">SF</p>
+                    <p class="text-sm text-slate-400 uppercase tracking-wide">Based</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-white">SEC</p>
+                    <p class="text-sm text-slate-400 uppercase tracking-wide">Standards</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-white">24/7</p>
+                    <p class="text-sm text-slate-400 uppercase tracking-wide">Monitoring</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-white">Global</p>
+                    <p class="text-sm text-slate-400 uppercase tracking-wide">Reach</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. About Us Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="relative mb-12 lg:mb-0">
+                    <!-- Decorative image styling -->
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-corporate-100 rounded-tl-3xl z-0"></div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-slate-100 rounded-br-3xl z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Office Environment" class="relative rounded-2xl shadow-2xl z-10 w-full object-cover h-[500px]">
+                    <div class="absolute bottom-10 left-10 z-20 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg border-l-4 border-corporate-600 max-w-xs hidden md:block">
+                        <p class="font-bold text-slate-900 text-lg">San Francisco HQ</p>
+                        <p class="text-sm text-slate-600">Located at 200 Brannan St, the heart of financial innovation.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-corporate-600 font-bold tracking-wide uppercase text-sm mb-3">Corporate Profile</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">Rigorous Discipline in Financial Allocation</h3>
+                    
+                    <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
+                        <p>
+                            Founded in San Francisco, M SHARE CAPITAL LLC operates as a premier entity in the sector of "Other Financial Investment Activities." We distinguish ourselves by moving beyond standard market participation, focusing instead on structural arbitrage and long-term value capture within securities and commodity contracts.
+                        </p>
+                        <p>
+                            Our firm leverages advanced quantitative analysis combined with qualitative market insight to construct robust portfolios for institutional and accredited private entities. We do not simply follow market trends; we analyze the underlying currents of the global economy to position capital where it yields the highest risk-adjusted efficiency.
+                        </p>
+                        <p>
+                            We maintain a strict fiduciary standard, ensuring that every strategic move aligns with the preservation of capital and the specific liquidity requirements of our partners. From complex derivatives to standard equity positions, our operational thesis is built on transparency, regulatory compliance, and analytical rigor.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-slate-100 flex items-center gap-4">
+                        <div class="flex -space-x-2">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Partner">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Partner">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/86.jpg" alt="Partner">
+                        </div>
+                        <div class="text-sm text-slate-500">
+                            Managed by a team of seasoned financial architects.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Services Section -->
+    <section id="services" class="py-24 bg-slate-50 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-corporate-100 rounded-full opacity-50 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-slate-200 rounded-full opacity-50 blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-corporate-600 font-bold tracking-wide uppercase text-sm mb-3">Core Competencies</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900">Strategic Investment Vehicles</h3>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+                    Our diversified approach ensures resilience across varying market conditions through specialized financial instruments.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-14 h-14 bg-corporate-50 rounded-xl flex items-center justify-center mb-6 text-corporate-600">
+                        <i class="fa-solid fa-chart-line text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Securities & Equities</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        We execute sophisticated strategies in public equity markets, utilizing fundamental analysis to identify undervalued assets with significant upside potential. Our approach balances growth-oriented positions with dividend-yielding securities for stability.
+                    </p>
+                    <a href="#" onclick="toggleModal('contactModal')" class="inline-flex items-center text-corporate-600 font-semibold hover:text-corporate-800">
+                        Learn more <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-14 h-14 bg-corporate-50 rounded-xl flex items-center justify-center mb-6 text-corporate-600">
+                        <i class="fa-solid fa-wheat-awn text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Commodity Contracts</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        M SHARE CAPITAL leverages commodity futures and options to hedge against inflation and volatility. We focus on energy, agricultural, and metal sectors, providing a non-correlated asset class that strengthens portfolio diversification.
+                    </p>
+                    <a href="#" onclick="toggleModal('contactModal')" class="inline-flex items-center text-corporate-600 font-semibold hover:text-corporate-800">
+                        Learn more <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="w-14 h-14 bg-corporate-50 rounded-xl flex items-center justify-center mb-6 text-corporate-600">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Asset Structuring</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Beyond trading, we offer bespoke structuring of financial assets to optimize tax efficiency and legacy planning. We work to ensure that ownership structures are robust, compliant, and aligned with long-term capital preservation goals.
+                    </p>
+                    <a href="#" onclick="toggleModal('contactModal')" class="inline-flex items-center text-corporate-600 font-semibold hover:text-corporate-800">
+                        Learn more <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Advantages / Why Choose Us -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-corporate-400 font-bold tracking-wide uppercase text-sm mb-3">Our Distinction</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">Why Partner with M SHARE CAPITAL?</h3>
+                    <p class="text-slate-400 text-lg mb-8">
+                        In a crowded financial landscape, our commitment to analytical precision and regulatory transparency sets us apart.
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-corporate-500 flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-slate-900 text-xs"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h5 class="text-lg font-bold text-white">Algorithmic & Human Synergy</h5>
+                                <p class="text-slate-400 mt-1">We combine high-frequency algorithmic models with seasoned human judgment to mitigate tail risk.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-corporate-500 flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-slate-900 text-xs"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h5 class="text-lg font-bold text-white">Regulatory Compliance</h5>
+                                <p class="text-slate-400 mt-1">Operating strictly within US frameworks, ensuring full transparency in all securities and contract dealings.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-corporate-500 flex items-center justify-center mt-1">
+                                <i class="fas fa-check text-slate-900 text-xs"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h5 class="text-lg font-bold text-white">Diversified Exposure</h5>
+                                <p class="text-slate-400 mt-1">Access to global markets allows us to decouple performance from domestic volatility.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1611974765270-ca12586343bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Financial Analytics" class="rounded-xl shadow-2xl border border-slate-700">
+                    <!-- Overlay Card -->
+                    <div class="absolute -bottom-6 -left-6 bg-corporate-800 p-6 rounded-lg shadow-xl border border-corporate-600">
+                        <div class="text-4xl font-bold text-white mb-1">98%</div>
+                        <div class="text-corporate-200 text-sm">Client Retention Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Process Section -->
+    <section id="process" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-corporate-600 font-bold tracking-wide uppercase text-sm mb-3">Engagement Model</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900">Operational Methodology</h3>
+            </div>
+
+            <div class="relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -z-10 transform -translate-y-1/2"></div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6 relative">
+                        <div class="w-16 h-16 mx-auto bg-corporate-900 text-white rounded-full flex items-center justify-center text-xl font-bold mb-6 border-4 border-white shadow-lg">01</div>
+                        <h4 class="text-xl font-bold text-center mb-3">Financial Assessment</h4>
+                        <p class="text-slate-600 text-center text-sm leading-relaxed">
+                            We begin with a comprehensive audit of current holdings, risk tolerance, and liquidity needs to establish a baseline for capital deployment.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6 relative">
+                        <div class="w-16 h-16 mx-auto bg-corporate-900 text-white rounded-full flex items-center justify-center text-xl font-bold mb-6 border-4 border-white shadow-lg">02</div>
+                        <h4 class="text-xl font-bold text-center mb-3">Strategy Allocation</h4>
+                        <p class="text-slate-600 text-center text-sm leading-relaxed">
+                            Capital is segmented into specific tranches—securities, commodities, and fixed income—based on the proprietary M SHARE structural model.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6 relative">
+                        <div class="w-16 h-16 mx-auto bg-corporate-900 text-white rounded-full flex items-center justify-center text-xl font-bold mb-6 border-4 border-white shadow-lg">03</div>
+                        <h4 class="text-xl font-bold text-center mb-3">Execution & Review</h4>
+                        <p class="text-slate-600 text-center text-sm leading-relaxed">
+                            Positions are entered with strict entry/exit parameters. Continuous monitoring ensures alignment with macroeconomic shifts and client goals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Call to Action / phrases for contact form -->
+    <section class="py-20 bg-corporate-900 relative overflow-hidden">
+        <!-- Abstract Shapes -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-corporate-500 opacity-10 rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to secure your financial future?</h2>
+            <p class="text-corporate-100 text-lg mb-10">
+                Contact M SHARE CAPITAL LLC today to discuss how our securities and investment strategies can work for you.
+            </p>
+            <button onclick="toggleModal('contactModal')" class="bg-white text-corporate-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-corporate-50 transition-colors shadow-2xl">
+                Open Contact Form
+            </button>
+        </div>
+    </section>
+
+    <!-- 7. Footer / Contacts -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-corporate-800 rounded flex items-center justify-center mr-2">
+                            <span class="text-white font-bold">M</span>
+                        </div>
+                        <span class="text-white font-bold text-lg">M SHARE CAPITAL LLC</span>
+                    </div>
+                    <p class="text-sm max-w-xs mb-4">
+                        Providing disciplined investment strategies and financial management services in San Francisco and beyond.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact</h4>
+                    <div class="flex items-start mb-3">
+                        <i class="fas fa-map-marker-alt mt-1 mr-3 text-corporate-500"></i>
+                        <span class="text-sm">200 Brannan St APT 443,<br>San Francisco, CA 94107</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope mr-3 text-corporate-500"></i>
+                        <a href="mailto:main@msharecapital.info" class="text-sm hover:text-white transition-colors">main@msharecapital.info</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2024 M SHARE CAPITAL LLC. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">San Francisco, California</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="fixed inset-0 z-[100] flex items-center justify-center modal-inactive modal backdrop-blur-sm bg-slate-900/60 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg relative overflow-hidden transform transition-all scale-100">
+            <!-- Modal Header -->
+            <div class="bg-corporate-900 px-6 py-4 flex justify-between items-center">
+                <h3 class="text-white font-bold text-lg">Contact M SHARE CAPITAL</h3>
+                <button onclick="toggleModal('contactModal')" class="text-white/70 hover:text-white transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-8">
+                <p class="text-slate-600 mb-6 text-sm">Please fill out the form below regarding our investment activities. A representative will reach out via email.</p>
+                
+                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-2 border border-slate-300 rounded-lg form-input text-slate-900" placeholder="John Doe">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                            <input type="email" required class="w-full px-4 py-2 border border-slate-300 rounded-lg form-input text-slate-900" placeholder="john@example.com">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Interest Area</label>
+                            <select class="w-full px-4 py-2 border border-slate-300 rounded-lg form-input text-slate-900 bg-white">
+                                <option>Securities Management</option>
+                                <option>Commodity Contracts</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                            <textarea required rows="3" class="w-full px-4 py-2 border border-slate-300 rounded-lg form-input text-slate-900" placeholder="How can we assist you?"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full mt-6 bg-corporate-600 hover:bg-corporate-700 text-white font-bold py-3 rounded-lg transition-colors shadow-lg">
+                        Send Message
+                    </button>
+                    
+                    <p class="text-xs text-slate-400 mt-4 text-center">
+                        By submitting, you agree to our Privacy Policy. No phone numbers are collected.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-[110] flex items-center justify-center modal-inactive modal backdrop-blur-sm bg-slate-900/60 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-8 text-center transform transition-all">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                <i class="fas fa-check text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
+            <p class="text-slate-600 mb-6">Thank you for contacting M SHARE CAPITAL LLC. We have received your inquiry and will respond to your email shortly.</p>
+            <button onclick="toggleModal('successModal')" class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2 rounded-lg font-medium w-full transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Modal Toggle Logic
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            const body = document.body;
+            
+            if (modal.classList.contains('modal-inactive')) {
+                modal.classList.remove('modal-inactive');
+                modal.classList.add('modal-active');
+                body.style.overflow = 'hidden'; // Prevent background scrolling
+            } else {
+                modal.classList.remove('modal-active');
+                modal.classList.add('modal-inactive');
+                body.style.overflow = 'auto';
+            }
+        }
+
+        // Form Handling
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent actual submission refresh
+            
+            // Close Contact Modal
+            toggleModal('contactModal');
+            
+            // Show Success Modal after a slight delay for visual smoothness
+            setTimeout(() => {
+                toggleModal('successModal');
+            }, 300);
+
+            // Reset form
+            document.getElementById('contactForm').reset();
+        }
+
+        // Mobile Menu Toggle
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const activeModals = document.querySelectorAll('.modal-active');
+                activeModals.forEach(modal => {
+                    toggleModal(modal.id);
+                });
+            }
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
